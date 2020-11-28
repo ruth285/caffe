@@ -1,0 +1,18 @@
+jobs:
+  check:
+    name: Main
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+      - name: Pull Libraries
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Run Unit Tests
+        run: ./build/build
+
+name: Test
+
+on:
+  schedule:
+    - cron: "45 */6 * * *"
